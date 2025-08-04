@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeTime - Your Moment of Self-Care</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Lora:wght@300;400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&family=Allura&family=Alex+Brush&family=Satisfy&family=Pacifico:wght@400&family=Lobster:wght@400&display=swap');
+        
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-cormorant { font-family: 'Cormorant Garamond', serif; }
+        .font-lora { font-family: 'Lora', serif; }
+        .font-crimson { font-family: 'Crimson Text', serif; }
+        .font-baskerville { font-family: 'Libre Baskerville', serif; }
+        .font-dancing { font-family: 'Dancing Script', cursive; }
+        .font-great-vibes { font-family: 'Great Vibes', cursive; }
+        .font-allura { font-family: 'Allura', cursive; }
+        .font-alex-brush { font-family: 'Alex Brush', cursive; }
+        .font-satisfy { font-family: 'Satisfy', cursive; }
+        .font-pacifico { font-family: 'Pacifico', cursive; }
+        .font-lobster { font-family: 'Lobster', cursive; }
+        
+        /* Ultra-stylish MeTime brand styling */
+        .brand-name {
+            font-family: 'Great Vibes', cursive;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            position: relative;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 25%, #f8b500 50%, #ff6b9d 75%, #c44569 100%);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease-in-out infinite;
+            filter: drop-shadow(0 4px 8px rgba(255, 107, 157, 0.3));
+            transform: rotate(-2deg);
+            text-shadow: 2px 2px 4px rgba(196, 69, 105, 0.2);
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .brand-name::before {
+            content: '✨';
+            position: absolute;
+            left: -30px;
+            top: -5px;
+            font-size: 0.6em;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+        
+        .brand-name::after {
+            content: '💫';
+            position: absolute;
+            right: -25px;
+            bottom: -5px;
+            font-size: 0.5em;
+            animation: sparkle 2s ease-in-out infinite reverse;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.4; transform: scale(0.8) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+        }
+        
+        .brand-name-footer {
+            font-family: 'Great Vibes', cursive;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            background: linear-gradient(135deg, #f472b6 0%, #ec4899 50%, #be185d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 2px 4px rgba(244, 114, 182, 0.3));
+            transform: rotate(-1deg);
+        }
+        
+        /* Hover effect for brand name */
+        .brand-name:hover {
+            transform: rotate(0deg) scale(1.05);
+            transition: all 0.3s ease;
+        }
+        
+        /* Alternative stylish fonts for different sections */
+        .brand-alt-1 { font-family: 'Dancing Script', cursive; font-weight: 600; }
+        .brand-alt-2 { font-family: 'Allura', cursive; }
+        .brand-alt-3 { font-family: 'Alex Brush', cursive; }
+        .brand-alt-4 { font-family: 'Satisfy', cursive; }
+        .brand-alt-5 { font-family: 'Pacifico', cursive; }
+        .brand-alt-6 { font-family: 'Lobster', cursive; }
+        
+        /* Custom responsive utilities */
+        .container-responsive {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        @media (min-width: 640px) {
+            .container-responsive { padding: 0 2rem; }
+        }
+        
+        @media (min-width: 1024px) {
+            .container-responsive { padding: 0 3rem; }
+        }
+        
+        /* Responsive grid system */
+        .responsive-grid {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: 1fr;
+        }
+        
+        @media (min-width: 640px) {
+            .responsive-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        }
+        
+        @media (min-width: 1024px) {
+            .responsive-grid { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        }
+        
+        @media (min-width: 1280px) {
+            .responsive-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+        
+        /* Responsive typography */
+        .text-responsive-sm {
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+        }
+        
+        .text-responsive-base {
+            font-size: 1rem;
+            line-height: 1.5rem;
+        }
+        
+        .text-responsive-lg {
+            font-size: 1.125rem;
+            line-height: 1.75rem;
+        }
+        
+        .text-responsive-xl {
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+        }
+        
+        .text-responsive-2xl {
+            font-size: 1.5rem;
+            line-height: 2rem;
+        }
+        
+        .text-responsive-3xl {
+            font-size: 1.875rem;
+            line-height: 2.25rem;
+        }
+        
+        .text-responsive-4xl {
+            font-size: 2.25rem;
+            line-height: 2.5rem;
+        }
+        
+        .text-responsive-5xl {
+            font-size: 3rem;
+            line-height: 1;
+        }
+        
+        @media (min-width: 640px) {
+            .text-responsive-sm { font-size: 1rem; line-height: 1.5rem; }
+            .text-responsive-base { font-size: 1.125rem; line-height: 1.75rem; }
+            .text-responsive-lg { font-size: 1.25rem; line-height: 1.75rem; }
+            .text-responsive-xl { font-size: 1.5rem; line-height: 2rem; }
+            .text-responsive-2xl { font-size: 1.875rem; line-height: 2.25rem; }
+            .text-responsive-3xl { font-size: 2.25rem; line-height: 2.5rem; }
+            .text-responsive-4xl { font-size: 3rem; line-height: 1; }
+            .text-responsive-5xl { font-size: 3.75rem; line-height: 1; }
+        }
+        
+        @media (min-width: 1024px) {
+            .text-responsive-sm { font-size: 1.125rem; line-height: 1.75rem; }
+            .text-responsive-base { font-size: 1.25rem; line-height: 1.75rem; }
+            .text-responsive-lg { font-size: 1.5rem; line-height: 2rem; }
+            .text-responsive-xl { font-size: 1.875rem; line-height: 2.25rem; }
+            .text-responsive-2xl { font-size: 2.25rem; line-height: 2.5rem; }
+            .text-responsive-3xl { font-size: 3rem; line-height: 1; }
+            .text-responsive-4xl { font-size: 3.75rem; line-height: 1; }
+            .text-responsive-5xl { font-size: 4.5rem; line-height: 1; }
+        }
+        
+        /* Responsive spacing */
+        .spacing-responsive {
+            padding: 1rem 0;
+        }
+        
+        @media (min-width: 640px) {
+            .spacing-responsive { padding: 2rem 0; }
+        }
+        
+        @media (min-width: 1024px) {
+            .spacing-responsive { padding: 3rem 0; }
+        }
+        
+        @media (min-width: 1280px) {
+            .spacing-responsive { padding: 4rem 0; }
+        }
+        
+        /* Mobile navigation */
+        .mobile-nav {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .mobile-nav.active {
+            transform: translateX(0);
+        }
+        
+        /* Responsive cards */
+        .card-responsive {
+            padding: 1rem;
+            border-radius: 0.75rem;
+            transition: all 0.3s ease;
+        }
+        
+        @media (min-width: 640px) {
+            .card-responsive { padding: 1.5rem; border-radius: 1rem; }
+        }
+        
+        @media (min-width: 1024px) {
+            .card-responsive { padding: 2rem; border-radius: 1.25rem; }
+        }
+        
+        .card-responsive:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Responsive hero section */
+        .hero-responsive {
+            min-height: 60vh;
+            padding: 2rem 0;
+        }
+        
+        @media (min-width: 640px) {
+            .hero-responsive { min-height: 70vh; padding: 3rem 0; }
+        }
+        
+        @media (min-width: 1024px) {
+            .hero-responsive { min-height: 80vh; padding: 4rem 0; }
+        }
+        
+        @media (min-width: 1280px) {
+            .hero-responsive { min-height: 90vh; padding: 5rem 0; }
+        }
+        
+        /* Responsive images */
+        .img-responsive {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Gradient backgrounds */
+        .gradient-pink {
+            background: linear-gradient(135deg, #ffeef8 0%, #f8e8ff 50%, #ffe0f0 100%);
+        }
+        
+        .gradient-purple {
+            background: linear-gradient(135deg, #e8d5ff 0%, #f0e6ff 50%, #ffeef8 100%);
+        }
+        
+        /* Device indicator */
+        .device-indicator {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            z-index: 1000;
+            font-weight: 600;
+        }
+        
+        /* Breakpoint visibility */
+        .show-mobile { display: block; }
+        .show-tablet { display: none; }
+        .show-desktop { display: none; }
+        .show-large { display: none; }
+        
+        @media (min-width: 640px) {
+            .show-mobile { display: none; }
+            .show-tablet { display: block; }
+        }
+        
+        @media (min-width: 1024px) {
+            .show-tablet { display: none; }
+            .show-desktop { display: block; }
+        }
+        
+        @media (min-width: 1280px) {
+            .show-desktop { display: none; }
+            .show-large { display: block; }
+        }
+        
+        /* Touch-friendly buttons */
+        .btn-touch {
+            min-height: 44px;
+            min-width: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+        }
+        
+        @media (min-width: 640px) {
+            .btn-touch { padding: 1rem 2rem; }
+        }
+        
+        /* Responsive flexbox utilities */
+        .flex-responsive {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        @media (min-width: 640px) {
+            .flex-responsive { flex-direction: row; gap: 1.5rem; }
+        }
+        
+        @media (min-width: 1024px) {
+            .flex-responsive { gap: 2rem; }
+        }
+    </style>
+</head>
+<body class="font-lora bg-gray-50">
+    <!-- Device Indicator -->
+    <div class="device-indicator">
+        <span class="show-mobile">📱 Mobile (< 640px)</span>
+        <span class="show-tablet">📱 Tablet (640px - 1023px)</span>
+        <span class="show-desktop">💻 Desktop (1024px - 1279px)</span>
+        <span class="show-large">🖥️ Large (≥ 1280px)</span>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white/95 backdrop-blur-md shadow-lg sticky top-0 z-40">
+        <div class="container-responsive">
+            <div class="flex justify-between items-center h-16 sm:h-20 lg:h-24">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="brand-name text-2xl sm:text-3xl lg:text-4xl">
+                        MeTime
+                    </div>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-pink-600 transition-colors font-medium relative group">
+                        Home
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-pink-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#products" class="text-gray-700 hover:text-pink-600 transition-colors font-medium relative group">
+                        Products
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-pink-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#routine" class="text-gray-700 hover:text-pink-600 transition-colors font-medium relative group">
+                        Routine
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-pink-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#about" class="text-gray-700 hover:text-pink-600 transition-colors font-medium relative group">
+                        About
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-pink-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#contact" class="text-gray-700 hover:text-pink-600 transition-colors font-medium relative group">
+                        Contact
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-pink-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                </nav>
+                
+                <!-- Action Buttons -->
+                <div class="flex items-center space-x-2 sm:space-x-4">
+                    <!-- Search (hidden on mobile) -->
+                    <button class="hidden sm:flex btn-touch p-2 text-gray-700 hover:text-pink-600 hover:bg-pink-50 rounded-full transition-all">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </button>
+                    
+                    <!-- Cart -->
+                    <button class="btn-touch p-2 text-gray-700 hover:text-pink-600 hover:bg-pink-50 rounded-full transition-all relative">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"></path>
+                        </svg>
+                        <span class="absolute -top-1 -right-1 bg-pink-500 text-white text-xs rounded-full h-4 w-4 sm:h-5 sm:w-5 flex items-center justify-center font-semibold">3</span>
+                    </button>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="lg:hidden btn-touch p-2 text-gray-700 hover:text-pink-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <nav id="mobile-nav" class="mobile-nav lg:hidden fixed inset-y-0 left-0 w-64 sm:w-80 bg-white shadow-2xl z-50">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-8">
+                    <div class="brand-name text-2xl">MeTime</div>
+                    <button id="close-menu-btn" class="btn-touch p-2 text-gray-700 hover:text-pink-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="space-y-6">
+                    <a href="#home" class="block text-gray-700 hover:text-pink-600 font-medium transition-colors py-2">Home</a>
+                    <a href="#products" class="block text-gray-700 hover:text-pink-600 font-medium transition-colors py-2">Products</a>
+                    <a href="#routine" class="block text-gray-700 hover:text-pink-600 font-medium transition-colors py-2">Routine</a>
+                    <a href="#about" class="block text-gray-700 hover:text-pink-600 font-medium transition-colors py-2">About</a>
+                    <a href="#contact" class="block text-gray-700 hover:text-pink-600 font-medium transition-colors py-2">Contact</a>
+                </div>
+                <div class="mt-8 pt-6 border-t border-gray-200">
+                    <div class="relative">
+                        <input type="text" placeholder="Search products..." class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-pink-500">
+                        <svg class="absolute left-3 top-3.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Mobile Menu Overlay -->
+        <div id="menu-overlay" class="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-responsive gradient-pink overflow-hidden relative">
+        <!-- Floating decorative elements -->
+        <div class="absolute top-10 right-10 w-20 h-20 sm:w-32 sm:h-32 bg-pink-200/30 rounded-full blur-xl animate-float"></div>
+        <div class="absolute bottom-20 left-10 w-16 h-16 sm:w-24 sm:h-24 bg-purple-200/30 rounded-full blur-lg animate-float" style="animation-delay: -2s;"></div>
+        
+        <div class="container-responsive h-full flex items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center w-full">
+                <div class="text-center lg:text-left animate-fade-in-up">
+                    <div class="mb-4 sm:mb-6">
+                        <span class="inline-block bg-pink-100 text-pink-700 px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium">
+                            ✨ Self-Care Revolution
+                        </span>
+                    </div>
+                    <h1 class="font-playfair text-responsive-5xl font-bold mb-4 sm:mb-6 text-gray-900 leading-tight">
+                        It's Your
+                        <span class="block relative">
+                            <span class="brand-name text-pink-600" style="font-size: inherit; transform: rotate(0deg); transition: all 0.3s ease;">MeTime</span>
+                            <svg class="absolute -bottom-2 left-0 w-full h-2 sm:h-3 text-pink-300/50" viewBox="0 0 300 12" fill="currentColor">
+                                <path d="M0,8 Q150,0 300,8 L300,12 L0,12 Z"/>
+                            </svg>
+                        </span>
+                    </h1>
+                    <p class="text-responsive-lg mb-6 sm:mb-10 text-gray-700 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        Discover the art of self-care with our premium skincare collection. Because you deserve moments of pure indulgence and radiant skin.
+                    </p>
+                    <div class="flex-responsive justify-center lg:justify-start">
+                        <button class="bg-pink-600 text-white btn-touch rounded-full font-semibold hover:bg-pink-700 hover:scale-105 transition-all duration-300 shadow-lg">
+                            Shop Collection →
+                        </button>
+                        <button class="border-2 border-pink-600 text-pink-600 btn-touch rounded-full font-semibold hover:bg-pink-600 hover:text-white hover:scale-105 transition-all duration-300">
+                            Take Quiz
+                        </button>
+                    </div>
+                    <div class="mt-8 sm:mt-12 flex items-center justify-center lg:justify-start space-x-6 sm:space-x-8 text-gray-600">
+                        <div class="text-center">
+                            <div class="text-xl sm:text-2xl font-bold text-pink-600">20K+</div>
+                            <div class="text-xs sm:text-sm">Happy Customers</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-xl sm:text-2xl font-bold text-pink-600">100%</div>
+                            <div class="text-xs sm:text-sm">Natural</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-xl sm:text-2xl font-bold text-pink-600">4.9★</div>
+                            <div class="text-xs sm:text-sm">Rating</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative animate-fade-in-up">
+                    <div class="bg-white/20 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-8 shadow-2xl">
+                        <div class="responsive-grid">
+                            <div class="bg-white/80 card-responsive text-center">
+                                <div class="text-3xl sm:text-4xl mb-2 sm:mb-4">🧴</div>
+                                <h3 class="font-semibold text-gray-800 mb-1 sm:mb-2 text-sm sm:text-base">Cleansers</h3>
+                                <p class="text-xs sm:text-sm text-gray-600">Gentle Daily Care</p>
+                            </div>
+                            <div class="bg-white/80 card-responsive text-center">
+                                <div class="text-3xl sm:text-4xl mb-2 sm:mb-4">✨</div>
+                                <h3 class="font-semibold text-gray-800 mb-1 sm:mb-2 text-sm sm:text-base">Serums</h3>
+                                <p class="text-xs sm:text-sm text-gray-600">Targeted Treatment</p>
+                            </div>
+                            <div class="bg-white/80 card-responsive text-center">
+                                <div class="text-3xl sm:text-4xl mb-2 sm:mb-4">🌙</div>
+                                <h3 class="font-semibold text-gray-800 mb-1 sm:mb-2 text-sm sm:text-base">Night Care</h3>
+                                <p class="text-xs sm:text-sm text-gray-600">Overnight Repair</p>
+                            </div>
+                            <div class="bg-white/80 card-responsive text-center">
+                                <div class="text-3xl sm:text-4xl mb-2 sm:mb-4">☀️</div>
+                                <h3 class="font-semibold text-gray-800 mb-1 sm:mb-2 text-sm sm:text-base">Day Care</h3>
+                                <p class="text-xs sm:text-sm text-gray-600">Daily Protection</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="products" class="spacing-responsive bg-white">
+        <div class="container-responsive">
+            <div class="text-center mb-8 sm:mb-16 animate-fade-in-up">
+                <span class="inline-block bg-pink-100 text-pink-600 px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium mb-4">
+                    🌟 Best Sellers
+                </span>
+                <h2 class="font-playfair text-responsive-4xl font-bold text-gray-900 mb-4 sm:mb-6">Your Self-Care Essentials</h2>
+                <p class="text-responsive-base text-gray-600 max-w-2xl mx-auto">Curated products for your perfect MeTime routine</p>
+            </div>
+            
+            <div class="responsive-grid">
+                <div class="bg-gradient-to-br from-pink-50 to-pink-100 card-responsive shadow-lg animate-fade-in-up">
+                    <div class="h-48 sm:h-64 lg:h-80 bg-gradient-to-br from-pink-200 to-pink-300 rounded-lg sm:rounded-xl flex items-center justify-center relative mb-4 sm:mb-6 overflow-hidden">
+                        <img src="vitaminc_serum.png" alt="Vitamin C Serum" class="w-full h-full object-cover rounded-lg sm:rounded-xl hover:scale-110 transition-transform duration-300" onerror="this.src=''; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="text-5xl sm:text-6xl lg:text-8xl hidden">🧴</div>
+                        <div class="absolute top-2 sm:top-4 left-2 sm:left-4 bg-pink-500 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs font-semibold">
+                            Bestseller
+                        </div>
+                        <button class="absolute top-2 sm:top-4 right-2 sm:right-4 p-1 sm:p-2 bg-white/80 backdrop-blur-sm rounded-full hover:bg-white transition-colors">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 hover:text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="flex items-center mb-2 sm:mb-3">
+                        <div class="flex text-yellow-400 text-xs sm:text-sm">★★★★★</div>
+                        <span class="text-gray-500 text-xs sm:text-sm ml-2">(324 reviews)</span>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2 text-sm sm:text-lg lg:text-xl">Glow Boost Vitamin C Serum</h3>
+                    <p class="text-gray-600 mb-3 sm:mb-4 text-xs sm:text-sm">Brighten and energize your skin with our signature vitamin C formula.</p>
+                    <div class="flex items-center justify-between mb-3 sm:mb-4">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-lg sm:text-xl lg:text-2xl font-bold text-pink-600">$18</span>
+                            <span class="text-xs sm:text-sm text-gray-400 line-through">$24</span>
+                        </div>
+                        <span class="bg-pink-100 text-pink-600 px-2 py-1 rounded-full text-xs font-medium">25% OFF</span>
+                    </div>
+                    <button class="w-full bg-pink-600 text-white py-2 sm:py-3 rounded-full font-semibold hover:bg-pink-700 transform hover:scale-105 transition-all duration-300 text-sm sm:text-base">
+                        Add to Cart
+                    </button>
+                </div>
+
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 card-responsive shadow-lg animate-fade-in-up">
+                    <div class="h-48 sm:h-64 lg:h-80 bg-gradient-to-br from-purple-200 to-purple-300 rounded-lg sm:rounded-xl flex items-center justify-center relative mb-4 sm:mb-6 overflow-hidden">
+                        <img src="hydra_plump.png" alt="Hydra-Plump Moisturizer" class="w-full h-full object-cover rounded-lg sm:rounded-xl hover:scale-110 transition-transform duration-300" onerror="this.src=''; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="text-5xl sm:text-6xl lg:text-8xl hidden">🌊</div>
+                        <div class="absolute top-2 sm:top-4 left-2 sm:left-4 bg-blue-500 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs font-semibold">
+                            Hydrating
+                        </div>
+                        <button class="absolute top-2 sm:top-4 right-2 sm:right-4 p-1 sm:p-2 bg-white/80 backdrop-blur-sm rounded-full hover:bg-white transition-colors">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 hover:text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="flex items-center mb-2 sm:mb-3">
+                        <div class="flex text-yellow-400 text-xs sm:text-sm">★★★★★</div>
+                        <span class="text-gray-500 text-xs sm:text-sm ml-2">(267 reviews)</span>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2 text-sm sm:text-lg lg:text-xl">Hydra-Plump Moisturizer</h3>
+                    <p class="text-gray-600 mb-3 sm:mb-4 text-xs sm:text-sm">24-hour hydration with hyaluronic acid and natural botanicals.</p>
+                    <div class="flex items-center justify-between mb-3 sm:mb-4">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-lg sm:text-xl lg:text-2xl font-bold text-pink-600">$15</span>
+                            <span class="text-xs sm:text-sm text-gray-400 line-through">$20</span>
+                        </div>
+                        <span class="bg-pink-100 text-pink-600 px-2 py-1 rounded-full text-xs font-medium">25% OFF</span>
+                    </div>
+                    <button class="w-full bg-pink-600 text-white py-2 sm:py-3 rounded-full font-semibold hover:bg-pink-700 transform hover:scale-105 transition-all duration-300 text-sm sm:text-base">
+                        Add to Cart
+                    </button>
+                </div>
+
+                <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 card-responsive shadow-lg animate-fade-in-up">
+                    <div class="h-48 sm:h-64 lg:h-80 bg-gradient-to-br from-yellow-200 to-yellow-300 rounded-lg sm:rounded-xl flex items-center justify-center relative mb-4 sm:mb-6 overflow-hidden">
+                        <img src="night_cream.png" alt="Dream Night Recovery Cream" class="w-full h-full object-cover rounded-lg sm:rounded-xl hover:scale-110 transition-transform duration-300" onerror="this.src=''; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="text-5xl sm:text-6xl lg:text-8xl hidden">🌙</div>
+                        <div class="absolute top-2 sm:top-4 left-2 sm:left-4 bg-purple-500 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs font-semibold">
+                            Anti-Aging
+                        </div>
+                        <button class="absolute top-2 sm:top-4 right-2 sm:right-4 p-1 sm:p-2 bg-white/80 backdrop-blur-sm rounded-full hover:bg-white transition-colors">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 hover:text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="flex items-center mb-2 sm:mb-3">
+                        <div class="flex text-yellow-400 text-xs sm:text-sm">★★★★★</div>
+                        <span class="text-gray-500 text-xs sm:text-sm ml-2">(198 reviews)</span>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2 text-sm sm:text-lg lg:text-xl">Dream Night Recovery Cream</h3>
+                    <p class="text-gray-600 mb-3 sm:mb-4 text-xs sm:text-sm">Overnight renewal with retinol and peptides for youthful skin.</p>
+                    <div class="flex items-center justify-between mb-3 sm:mb-4">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-lg sm:text-xl lg:text-2xl font-bold text-pink-600">$22</span>
+                            <span class="text-xs sm:text-sm text-gray-400 line-through">$30</span>
+                        </div>
+                        <span class="bg-pink-100 text-pink-600 px-2 py-1 rounded-full text-xs font-medium">27% OFF</span>
+                    </div>
+                    <button class="w-full bg-pink-600 text-white py-2 sm:py-3 rounded-full font-semibold hover:bg-pink-700 transform hover:scale-105 transition-all duration-300 text-sm sm:text-base">
+                        Add to Cart
+                    </button>
+                </div>
+
+                <div class="bg-gradient-to-br from-green-50 to-green-100 card-responsive shadow-lg animate-fade-in-up">
+                    <div class="h-48 sm:h-64 lg:h-80 bg-gradient-to-br from-green-200 to-green-300 rounded-lg sm:rounded-xl flex items-center justify-center relative mb-4 sm:mb-6 overflow-hidden">
+                        <img src="cleanser.png" alt="Pure Gentle Cleanser" class="w-full h-full object-cover rounded-lg sm:rounded-xl hover:scale-110 transition-transform duration-300" onerror="this.src=''; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="text-5xl sm:text-6xl lg:text-8xl hidden">🌿</div>
+                        <div class="absolute top-2 sm:top-4 left-2 sm:left-4 bg-green-500 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs font-semibold">
+                            Natural
+                        </div>
+                        <button class="absolute top-2 sm:top-4 right-2 sm:right-4 p-1 sm:p-2 bg-white/80 backdrop-blur-sm rounded-full hover:bg-white transition-colors">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 hover:text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="flex items-center mb-2 sm:mb-3">
+                        <div class="flex text-yellow-400 text-xs sm:text-sm">★★★★★</div>
+                        <span class="text-gray-500 text-xs sm:text-sm ml-2">(156 reviews)</span>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2 text-sm sm:text-lg lg:text-xl">Pure Gentle Cleanser</h3>
+                    <p class="text-gray-600 mb-3 sm:mb-4 text-xs sm:text-sm">Gentle daily cleanser with natural botanicals for all skin types.</p>
+                    <div class="flex items-center justify-between mb-3 sm:mb-4">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-lg sm:text-xl lg:text-2xl font-bold text-pink-600">$12</span>
+                            <span class="text-xs sm:text-sm text-gray-400 line-through">$16</span>
+                        </div>
+                        <span class="bg-pink-100 text-pink-600 px-2 py-1 rounded-full text-xs font-medium">25% OFF</span>
+                    </div>
+                    <button class="w-full bg-pink-600 text-white py-2 sm:py-3 rounded-full font-semibold hover:bg-pink-700 transform hover:scale-105 transition-all duration-300 text-sm sm:text-base">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skincare Routine Section -->
+    <section id="routine" class="spacing-responsive gradient-purple">
+        <div class="container-responsive">
+            <div class="text-center mb-8 sm:mb-16 animate-fade-in-up">
+                <span class="inline-block bg-purple-100 text-purple-600 px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium mb-4">
+                    ✨ Your Routine
+                </span>
+                <h2 class="font-playfair text-responsive-4xl font-bold text-gray-900 mb-4 sm:mb-6">Perfect MeTime Routine</h2>
+                <p class="text-responsive-base text-gray-600 max-w-2xl mx-auto">Follow our expert-designed routine for radiant, healthy skin</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+                <div class="bg-white/80 backdrop-blur-sm card-responsive text-center shadow-lg animate-fade-in-up">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                        <span class="text-xl sm:text-2xl">🧼</span>
+                    </div>
+                    <div class="bg-pink-500 text-white rounded-full w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center text-xs sm:text-sm font-bold mx-auto mb-2 sm:mb-3">1</div>
+                    <h3 class="font-semibold text-gray-900 mb-2 text-sm sm:text-base lg:text-lg">Cleanse</h3>
+                    <p class="text-gray-600 text-xs sm:text-sm">Start with our gentle cleanser to remove impurities</p>
+                </div>
+                
+                <div class="bg-white/80 backdrop-blur-sm card-responsive text-center shadow-lg animate-fade-in-up">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                        <span class="text-xl sm:text-2xl">💧</span>
+                    </div>
+                    <div class="bg-blue-500 text-white rounded-full w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center text-xs sm:text-sm font-bold mx-auto mb-2 sm:mb-3">2</div>
+                    <h3 class="font-semibold text-gray-900 mb-2 text-sm sm:text-base lg:text-lg">Tone</h3>
+                    <p class="text-gray-600 text-xs sm:text-sm">Balance your skin's pH with our refreshing toner</p>
+                </div>
+                
+                <div class="bg-white/80 backdrop-blur-sm card-responsive text-center shadow-lg animate-fade-in-up">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                        <span class="text-xl sm:text-2xl">✨</span>
+                    </div>
+                    <div class="bg-yellow-500 text-white rounded-full w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center text-xs sm:text-sm font-bold mx-auto mb-2 sm:mb-3">3</div>
+                    <h3 class="font-semibold text-gray-900 mb-2 text-sm sm:text-base lg:text-lg">Treat</h3>
+                    <p class="text-gray-600 text-xs sm:text-sm">Apply targeted serums for specific skin concerns</p>
+                </div>
+                
+                <div class="bg-white/80 backdrop-blur-sm card-responsive text-center shadow-lg animate-fade-in-up">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                        <span class="text-xl sm:text-2xl">🌿</span>
+                    </div>
+                    <div class="bg-green-500 text-white rounded-full w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center text-xs sm:text-sm font-bold mx-auto mb-2 sm:mb-3">4</div>
+                    <h3 class="font-semibold text-gray-900 mb-2 text-sm sm:text-base lg:text-lg">Moisturize</h3>
+                    <p class="text-gray-600 text-xs sm:text-sm">Lock in hydration with our nourishing moisturizer</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-8 sm:mt-12">
+                <button class="bg-white text-pink-600 btn-touch rounded-full font-semibold hover:bg-pink-50 hover:scale-105 transition-all duration-300 shadow-lg">
+                    Get Personalized Routine
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="spacing-responsive bg-white">
+        <div class="container-responsive">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                <div class="animate-fade-in-up">
+                    <span class="inline-block bg-pink-100 text-pink-600 px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6">
+                        💆‍♀️ Our Story
+                    </span>
+                    <h2 class="font-playfair text-responsive-4xl font-bold text-gray-900 mb-4 sm:mb-6">
+                        Self-Care Made Simple
+                    </h2>
+                    <p class="text-responsive-base text-gray-700 mb-4 sm:mb-6 leading-relaxed">
+                        MeTime was born from the belief that everyone deserves moments of pure self-care. Founded by skincare enthusiasts who understand the power of taking time for yourself.
+                    </p>
+                    <p class="text-responsive-base text-gray-700 mb-6 sm:mb-8 leading-relaxed">
+                        Our carefully curated collection combines effective ingredients with luxurious textures, creating products that transform your daily routine into a spa-like experience.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 sm:gap-6">
+                        <div class="text-center">
+                            <div class="text-2xl sm:text-3xl font-bold text-pink-600 mb-1 sm:mb-2">5+</div>
+                            <div class="text-gray-600 text-xs sm:text-sm">Years Experience</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl sm:text-3xl font-bold text-pink-600 mb-1 sm:mb-2">100%</div>
+                            <div class="text-gray-600 text-xs sm:text-sm">Cruelty-Free</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative animate-fade-in-up">
+                    <div class="bg-gradient-to-br from-pink-100 to-purple-100 rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-2xl">
+                        <div class="grid grid-cols-2 gap-4 sm:gap-6">
+                            <div class="bg-white/80 card-responsive text-center">
+                                <div class="text-2xl sm:text-3xl mb-2 sm:mb-3">🌱</div>
+                                <h4 class="font-semibold text-gray-800 mb-1 sm:mb-2 text-xs sm:text-sm">Natural</h4>
+                                <p class="text-xs text-gray-600">Clean ingredients</p>
+                            </div>
+                            <div class="bg-white/80 card-responsive text-center">
+                                <div class="text-2xl sm:text-3xl mb-2 sm:mb-3">🔬</div>
+                                <h4 class="font-semibold text-gray-800 mb-1 sm:mb-2 text-xs sm:text-sm">Tested</h4>
+                                <p class="text-xs text-gray-600">Dermatologist approved</p>
+                            </div>
+                            <div class="bg-white/80 card-responsive text-center">
+                                <div class="text-2xl sm:text-3xl mb-2 sm:mb-3">❤️</div>
+                                <h4 class="font-semibold text-gray-800 mb-1 sm:mb-2 text-xs sm:text-sm">Ethical</h4>
+                                <p class="text-xs text-gray-600">Responsibly sourced</p>
+                            </div>
+                            <div class="bg-white/80 card-responsive text-center">
+                                <div class="text-2xl sm:text-3xl mb-2 sm:mb-3">✨</div>
+                                <h4 class="font-semibold text-gray-800 mb-1 sm:mb-2 text-xs sm:text-sm">Effective</h4>
+                                <p class="text-xs text-gray-600">Proven results</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="spacing-responsive bg-pink-600 relative overflow-hidden">
+        <div class="absolute inset-0 bg-pink-700/20"></div>
+        <div class="absolute top-0 left-0 w-full h-full">
+            <div class="absolute top-10 right-10 w-20 h-20 sm:w-40 sm:h-40 bg-white/10 rounded-full blur-3xl animate-float"></div>
+            <div class="absolute bottom-10 left-10 w-16 h-16 sm:w-32 sm:h-32 bg-yellow-300/20 rounded-full blur-2xl animate-float" style="animation-delay: -3s;"></div>
+        </div>
+        <div class="relative container-responsive text-center animate-fade-in-up">
+            <span class="inline-block bg-white/20 backdrop-blur-sm px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6 text-white">
+                📧 Join MeTime
+            </span>
+            <h2 class="font-playfair text-responsive-4xl font-bold text-white mb-4 sm:mb-6">Your Self-Care Journey Starts Here</h2>
+            <p class="text-white/90 mb-6 sm:mb-10 text-responsive-base max-w-2xl mx-auto">Get exclusive skincare tips, early access to new products, and special MeTime moments</p>
+            <div class="flex-responsive justify-center max-w-lg mx-auto mb-6 sm:mb-8">
+                <input type="email" placeholder="Enter your email address" class="flex-1 px-4 py-3 sm:px-6 sm:py-4 rounded-full border-0 focus:outline-none focus:ring-2 focus:ring-white bg-white/90 backdrop-blur-sm text-gray-900 placeholder-gray-500 text-sm sm:text-base">
+                <button class="bg-white text-pink-600 btn-touch rounded-full font-bold hover:bg-pink-50 hover:scale-105 transition-all duration-300 shadow-lg text-sm sm:text-base">
+                    Subscribe
+                </button>
+            </div>
+            <p class="text-pink-200 text-xs sm:text-sm">Join 30,000+ self-care enthusiasts. Unsubscribe anytime.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-gray-900 text-white py-8 sm:py-16">
+        <div class="container-responsive">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-8 sm:mb-12">
+                <div class="lg:col-span-1">
+                    <div class="brand-name-footer text-2xl sm:text-3xl mb-4 sm:mb-6">MeTime</div>
+                    <p class="text-gray-400 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">Your moment of self-care with premium skincare that loves you back.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors group">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gray-300 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors group">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gray-300 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.347-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors group">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gray-300 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors group">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gray-300 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors group">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gray-300 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-bold text-sm sm:text-lg mb-4 sm:mb-6">Products</h3>
+                    <ul class="space-y-2 sm:space-y-3 text-gray-400 text-xs sm:text-sm">
+                        <li><a href="#" class="hover:text-pink-400 transition-colors">Cleansers</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition-colors">Serums</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition-colors">Moisturizers</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition-colors">Treatments</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition-colors">Gift Sets</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-sm sm:text-lg mb-4 sm:mb-6">Support</h3>
+                    <ul class="space-y-2 sm:space-y-3 text-gray-400 text-xs sm:text-sm">
+                        <li><a href="#" class="hover:text-pink-400 transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition-colors">Shipping</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition-colors">Returns</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition-colors">Size Guide</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-sm sm:text-lg mb-4 sm:mb-6">Contact</h3>
+                    <div class="space-y-2 sm:space-y-3 text-gray-400 text-xs sm:text-sm">
+                        <div class="flex items-center space-x-3">
+                            <span>📧</span>
+                            <span>hello@metime.com</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span>📱</span>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span>📍</span>
+                            <span>123 Self-Care Ave, Beauty City</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span>🕒</span>
+                            <span>Mon-Fri: 9AM-6PM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-6 sm:pt-8">
+                <div class="flex flex-col sm:flex-row justify-between items-center">
+                    <p class="text-gray-400 mb-4 sm:mb-0 text-xs sm:text-sm text-center sm:text-left">&copy; 2024 MeTime Skincare. All rights reserved. | Your self-care moment awaits 💆‍♀️</p>
+                    <div class="flex items-center space-x-4 sm:space-x-6 text-gray-400 text-xs sm:text-sm">
+                        <span class="flex items-center"><span class="mr-2">🌱</span>Natural</span>
+                        <span class="flex items-center"><span class="mr-2">🚚</span>Free Ship</span>
+                        <span class="flex items-center"><span class="mr-2">❤️</span>Cruelty-Free</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileNav = document.getElementById('mobile-nav');
+        const menuOverlay = document.getElementById('menu-overlay');
+
+        function openMobileMenu() {
+            mobileNav.classList.add('active');
+            menuOverlay.classList.remove('opacity-0', 'pointer-events-none');
+            menuOverlay.classList.add('opacity-100');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileNav.classList.remove('active');
+            menuOverlay.classList.add('opacity-0', 'pointer-events-none');
+            menuOverlay.classList.remove('opacity-100');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuBtn.addEventListener('click', openMobileMenu);
+        closeMenuBtn.addEventListener('click', closeMobileMenu);
+        menuOverlay.addEventListener('click', closeMobileMenu);
+
+        // Close mobile menu when clicking on navigation links
+        document.querySelectorAll('#mobile-nav a').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for animations
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Add to cart functionality with feedback
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.includes('Add to Cart')) {
+                button.addEventListener('click', function() {
+                    const originalText = this.textContent;
+                    const originalClasses = this.className;
+                    
+                    this.textContent = 'Added! ✓';
+                    this.classList.add('bg-green-600', 'hover:bg-green-700');
+                    this.classList.remove('bg-pink-600', 'hover:bg-pink-700');
+                    
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                        this.className = originalClasses;
+                    }, 2000);
+                });
+            }
+        });
+
+        // Newsletter subscription
+        document.querySelector('section button').addEventListener('click', function() {
+            const email = document.querySelector('input[type="email"]').value;
+            if (email && email.includes('@')) {
+                alert('Welcome to MeTime! 💆‍♀️ You\'ll receive exclusive self-care tips and offers soon.');
+                document.querySelector('input[type="email"]').value = '';
+            } else {
+                alert('Please enter a valid email address to join our self-care community.');
+            }
+        });
+
+        // Wishlist functionality
+        document.querySelectorAll('svg').forEach(heart => {
+            if (heart.parentElement.tagName === 'BUTTON' && heart.querySelector('path[d*="4.318"]')) {
+                heart.parentElement.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const heartIcon = this.querySelector('svg');
+                    if (heartIcon.classList.contains('text-red-500')) {
+                        heartIcon.classList.remove('text-red-500');
+                        heartIcon.classList.add('text-gray-600');
+                        alert('Removed from wishlist 💔');
+                    } else {
+                        heartIcon.classList.add('text-red-500');
+                        heartIcon.classList.remove('text-gray-600');
+                        alert('Added to wishlist! ❤️ Perfect for your MeTime collection');
+                    }
+                });
+            }
+        });
+
+        // Responsive behavior monitoring
+        function updateResponsiveInfo() {
+            const width = window.innerWidth;
+            console.log(`Current viewport width: ${width}px`);
+            
+            // Custom responsive behavior
+            if (width < 640) {
+                console.log('Mobile view: Optimized for touch interactions');
+            } else if (width < 1024) {
+                console.log('Tablet view: Balanced layout for medium screens');
+            } else if (width < 1280) {
+                console.log('Desktop view: Full feature layout');
+            } else {
+                console.log('Large desktop view: Maximum content display');
+            }
+        }
+
+        // Monitor window resize for responsive updates
+        window.addEventListener('resize', updateResponsiveInfo);
+        updateResponsiveInfo(); // Initial call
+
+        // Touch and hover detection for better UX
+        let isTouch = false;
+        
+        window.addEventListener('touchstart', function() {
+            isTouch = true;
+            document.body.classList.add('touch-device');
+        });
+
+        window.addEventListener('mouseover', function() {
+            if (!isTouch) {
+                document.body.classList.add('hover-device');
+            }
+        });
+
+        // Keyboard navigation support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+                closeMobileMenu();
+            }
+        });
+
+        // Search functionality
+        document.querySelectorAll('input[type="text"]').forEach(searchInput => {
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const searchTerm = this.value;
+                    if (searchTerm) {
+                        alert(`Searching MeTime products for: "${searchTerm}" 🔍`);
+                    }
+                }
+            });
+        });
+
+        // Cart update animation
+        const cartButton = document.querySelector('button svg').parentElement;
+        if (cartButton) {
+            cartButton.addEventListener('click', function() {
+                this.classList.add('animate-bounce');
+                setTimeout(() => {
+                    this.classList.remove('animate-bounce');
+                }, 1000);
+            });
+        }
+
+        // Parallax effect for floating elements
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelectorAll('.animate-float');
+            const speed = 0.3;
+
+            parallax.forEach(element => {
+                const yPos = -(scrolled * speed);
+                element.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+
+        // Performance optimization: Debounce resize events
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        const debouncedResize = debounce(updateResponsiveInfo, 250);
+        window.addEventListener('resize', debouncedResize);
+
+        console.log('💆‍♀️ MeTime skincare website loaded successfully!');
+        console.log('📱 Fully responsive design active - try resizing your browser!');
+        console.log('✨ Your self-care journey starts here');
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'969fa644471359f3',t:'MTc1NDMyNzIzMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
